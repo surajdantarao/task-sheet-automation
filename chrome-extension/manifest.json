@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "WhiteCode Meet Tasksheet Sync",
+  "version": "1.0.0",
+  "description": "Captures ongoing Google Meet discussions in English and Marathi, transcribes with Google Gemini AI, and auto-fills employee tasksheets.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+    "tabCapture"
+  ],
+  "host_permissions": [
+    "https://meet.google.com/*",
+    "http://localhost:3000/*",
+    "https://api.whitecodelabs.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "WhiteCode Meet Sync"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://meet.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

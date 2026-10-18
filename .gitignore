@@ -1,0 +1,8 @@
+credentials.json
+.env
+node_modules/
+token.json
+meetings.db
+*.db
+*.log
+dist/

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WhiteCode Meet Automation — 2-Page Executive Architecture & Flow</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm 8mm 10mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      font-size: 8.2pt;
+      line-height: 1.35;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      width: 100%;
+      height: 280mm;
+      max-height: 280mm;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .page:last-child {
+      page-break-after: avoid;
+    }
+
+    /* Header */
+    .header-banner {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #0284c7 100%);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .header-banner .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-size: 6.8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 2px 7px;
+      border-radius: 12px;
+      margin-bottom: 4px;
+    }
+
+    .header-banner h1 {
+      margin: 0 0 2px 0;
+      font-size: 15pt;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .header-banner p {
+      margin: 0;
+      font-size: 8pt;
+      color: #e0f2fe;
+    }
+
+    /* Section Headings */
+    h2 {
+      color: #1e3a8a;
+      font-size: 9.6pt;
+      font-weight: 700;
+      border-bottom: 1.5px solid #cbd5e1;
+      padding-bottom: 3px;
+      margin: 7px 0 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    h2 .num {
+      background: #2563eb;
+      color: white;
+      font-size: 7.2pt;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7.6pt;
+      margin: 4px 0 6px 0;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #0f172a;
+      text-align: left;
+      padding: 4px 6px;
+      font-weight: 700;
+      border: 1px solid #cbd5e1;
+    }
+
+    td {
+      padding: 3.5px 6px;
+      border: 1px solid #e2e8f0;
+      vertical-align: top;
+      color: #334155;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Flow Grid / Steps */
+    .flow-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin: 6px 0;
+    }
+
+    .flow-card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 6px 8px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    .flow-card .step-title {
+      font-size: 8pt;
+      font-weight: 700;
+      color: #1e3a8a;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 3px;
+    }
+
+    .flow-card .step-circle {
+      background: #2563eb;
+      color: white;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      font-size: 6.8pt;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .flow-card p {
+      margin: 0;
+      font-size: 7.2pt;
+      color: #475569;
+      line-height: 1.25;
+    }
+
+    /* Key-Value / Callout Boxes */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .box-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-left: 3.5px solid #2563eb;
+      border-radius: 5px;
+      padding: 5px 8px;
+      font-size: 7.5pt;
+    }
+
+    .box-card strong {
+      color: #0f172a;
+      display: block;
+      font-size: 7.8pt;
+      margin-bottom: 2px;
+    }
+
+    .box-success { border-left-color: #16a34a; background: #f0fdf4; }
+    .box-amber { border-left-color: #d97706; background: #fffbeb; }
+
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 7.2pt;
+      background: #e2e8f0;
+      color: #991b1b;
+      padding: 1px 3px;
+      border-radius: 3px;
+    }
+
+    .footer {
+      font-size: 6.8pt;
+      color: #64748b;
+      text-align: center;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 3px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 6.5pt;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 3px;
+      background: #e0f2fe;
+      color: #0369a1;
+      margin-right: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== PAGE 1 ==================== -->
+  <div class="page">
+    <div>
+      <!-- Banner -->
+      <div class="header-banner">
+        <span class="badge">WhiteCode Labs • System Architecture</span>
+        <h1>WhiteCode Meet Automation</h1>
+        <p>End-to-End Flow & Key Specification: Automated Google Meet Discussion Capture, Multilingual AI Processing & Tasksheet Logging</p>
+      </div>
+
+      <!-- Overview -->
+      <h2><span class="num">1</span> Executive Overview & Problem Solved</h2>
+      <p style="margin: 0 0 5px 0; font-size: 7.8pt;">
+        Eliminates manual employee timesheet entry by tracking actual Google Meet participation, transcribing <strong>English, Marathi (मराठी), and "Mar-glish"</strong> code-switching verbatim with <strong>Google Gemini 3.6 Flash</strong>, classifying projects, and pushing validated hours directly into individual corporate tasksheets and the WhiteCode HR REST API.
+      </p>
+
+      <!-- Keys Used Table -->
+      <h2><span class="num">2</span> Complete Keys & Credentials Reference</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 22%;">Key / Credential</th>
+            <th style="width: 20%;">Location</th>
+            <th style="width: 58%;">Purpose & How It Is Used in the Backend</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Google OAuth Web Client</strong><br>(<code>client_id</code>, <code>client_secret</code>)</td>
+            <td><code>credentials.json</code><br>(Project Root)</td>
+            <td>Loaded at boot to instantiate <code>OAuth2Client</code>. Authenticates the application with Google Calendar & Google Meet APIs.</td>
+          </tr>
+          <tr>
+            <td><strong>Google OAuth Tokens</strong><br>(<code>access_token</code>, <code>refresh_token</code>)</td>
+            <td><code>token.json</code><br>(Project Root)</td>
+            <td>Stores authorized user tokens (scopes: <code>calendar.readonly</code> & <code>meetings.space.readonly</code>). Automatically persisted upon refresh via <code>oauth2Client.on("tokens")</code>.</td>
+          </tr>
+          <tr>
+            <td><strong><code>GEMINI_API_KEY</code></strong></td>
+            <td><code>.env</code></td>
+            <td>Authorizes calls to <strong>Google Gemini 3.6 Flash</strong> via Google AI Files API for: (1) High-fidelity audio transcription in Marathi & English, and (2) Corporate discussion topic extraction.</td>
+          </tr>
+          <tr>
+            <td><strong><code>PUBLIC_WEBHOOK_URL</code></strong></td>
+            <td><code>.env</code></td>
+            <td>Public HTTPS endpoint (Cloudflare/ngrok tunnel) registered with Google Calendar to receive instant push webhook notifications on meeting schedule changes.</td>
+          </tr>
+          <tr>
+            <td><strong><code>EXTERNAL_TASKSHEET_API_KEY</code></strong></td>
+            <td><code>.env</code></td>
+            <td>Bearer token / API key used to push generated tasksheet rows to WhiteCode's live HR REST API (<code>/api/tasksheet/entries</code>).</td>
+          </tr>
+          <tr>
+            <td><strong><code>EXTERNAL_SYNC_ENABLED</code></strong></td>
+            <td><code>.env</code></td>
+            <td>Toggle (<code>true</code>/<code>false</code>) enabling automatic push to external corporate servers.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- End-to-End Flow (6 Step Grid) -->
+      <h2><span class="num">3</span> Complete End-to-End System Flow</h2>
+      <div class="flow-container">
+        <div class="flow-card">
+          <div class="step-title"><span class="step-circle">1</span> Meeting Discovery</div>
+          <p>Google Calendar webhook triggers on scheduled events, or Chrome Extension instantly detects impromptu calls on <code>meet.google.com</code>.</p>
+        </div>
+        <div class="flow-card">
+          <div class="step-title"><span class="step-circle">2</span> Dual Audio & Captions</div>
+          <p>Chrome Extension records 128kbps Opus audio & observes DOM captions, stripping Google Meet system toasts ("mic muted", "user left").</p>
+        </div>
+        <div class="flow-card">
+          <div class="step-title"><span class="step-circle">3</span> Multilingual Gemini STT</div>
+          <p>Audio is uploaded to Gemini Files API. Gemini 3.6 Flash transcribes verbatim Marathi Devanagari script and English technical keywords.</p>
+        </div>
+        <div class="flow-card">
+          <div class="step-title"><span class="step-circle">4</span> Topic Extraction & AI</div>
+          <p>Gemini analyzes transcript vs. project catalog; outputs Project ID, 2–5 bullet topics discussed, and formal corporate task sentences.</p>
+        </div>
+        <div class="flow-card">
+          <div class="step-title"><span class="step-circle">5</span> Duration Interval Math</div>
+          <p>Mathematical interval union merges overlapping reconnects/multi-device joins so employees are never overbilled or double-counted.</p>
+        </div>
+        <div class="flow-card">
+          <div class="step-title"><span class="step-circle">6</span> Individual Tasksheet Sync</div>
+          <p>Creates entry in each attending employee's tasksheet with formatted effort ("1 hr 30 mins") & pushes to WhiteCode HR API.</p>
+        </div>
+      </div>
+
+      <!-- Core Highlights -->
+      <div class="grid-2col" style="margin-top: 5px;">
+        <div class="box-card box-success">
+          <strong>Overlapping Interval Duration Formula:</strong>
+          Ensures multi-device attendance (phone + laptop) or network disconnects are merged:
+          $$\text{Total Duration} = \sum (\text{Merged Interval End} - \text{Merged Interval Start})$$
+          Waits until participant leaves call before generating tasksheet entry.
+        </div>
+        <div class="box-card box-amber">
+          <strong>Identity Disambiguation:</strong>
+          3-tier matching: (1) <code>employee_email_aliases</code> lookup, (2) Direct email match, (3) Heuristic token scoring (+2000 for distinctive tokens, -1000 for mismatched names like Suraj Dantrao vs Suraj WhiteCode).
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      WhiteCode Meet Automation • Architecture & Flow Specification • Page 1 of 2
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 2 ==================== -->
+  <div class="page">
+    <div>
+      <!-- Page 2 Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #1e3a8a; padding-bottom: 4px; margin-bottom: 8px;">
+        <span style="font-weight: 800; font-size: 11pt; color: #1e3a8a;">WhiteCode Meet Automation — Backend & Extension Deep Dive</span>
+        <span class="tag" style="background: #2563eb; color: white;">Page 2 of 2</span>
+      </div>
+
+      <!-- Backend Flow Breakdown -->
+      <h2><span class="num">4</span> Backend Processing Architecture (<code>src/index.ts</code>)</h2>
+      <div class="grid-2col">
+        <div class="box-card">
+          <strong>Google Calendar Webhook & Watcher</strong>
+          Webhook at <code>/google/calendar/webhook</code> verifies <code>x-goog-channel-id</code> against SQLite table <code>calendar_watch_channels</code>. Upon reception, it queries <code>calendar.events.list</code>, resolves Google Meet URLs (<code>meet.google.com/xxx-yyyy-zzz</code>), and stores meeting records in SQLite with status <code>DETECTED</code>.
+        </div>
+        <div class="box-card">
+          <strong>Multilingual Audio Pipeline (<code>gemini.service.ts</code>)</strong>
+          <code>POST /api/meet/audio-chunk</code> receives multipart WebM audio from extension. It uploads the buffer to Google AI Files API and invokes Gemini 3.6 Flash. Spoken Marathi is transcribed into Devanagari script, English tech terms (API, database, UI, test) remain in English, and ambient noise is filtered.
+        </div>
+      </div>
+
+      <div class="grid-2col" style="margin-top: 5px;">
+        <div class="box-card">
+          <strong>AI Discussion Extraction & Translation</strong>
+          When finalized, Gemini classifies the meeting against available projects and translates Marathi discussion points into professional corporate English:
+          <br><em>"Attended project meeting to discuss client information support requirements and automated data entry workflow."</em>
+        </div>
+        <div class="box-card">
+          <strong>Individual Tasksheet & External Push</strong>
+          Validates that duration &gt; 0 and participant has left the call. Creates individual entries in <code>tasksheet_entries</code> for each employee. If <code>EXTERNAL_SYNC_ENABLED=true</code>, immediately posts to WhiteCode REST API with automatic background retries for failed syncs.
+        </div>
+      </div>
+
+      <!-- Chrome Extension Architecture -->
+      <h2><span class="num">5</span> Chrome Extension Flow (Manifest V3)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 25%;">Component</th>
+            <th style="width: 35%;">Action & Method</th>
+            <th style="width: 40%;">Key Implementation Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Content Script</strong><br>(<code>content.js</code>)</td>
+            <td>Audio Recording + DOM Captions</td>
+            <td>Captures tab microphone using <code>navigator.mediaDevices.getUserMedia</code> (48kHz, Opus). Observes live captions via <code>MutationObserver</code>. Scrapes participants from video tiles & people panel.</td>
+          </tr>
+          <tr>
+            <td><strong>Toast Filter</strong><br>(<code>content.js</code>)</td>
+            <td>Regex Noise Suppression</td>
+            <td>Filters out system messages: <em>"microphone is on/off"</em>, <em>"X left call"</em>, <em>"rate audio/video"</em>, <em>"you are muted"</em> to prevent corrupting corporate discussion logs.</td>
+          </tr>
+          <tr>
+            <td><strong>Popup UI</strong><br>(<code>popup.html</code>/<code>popup.js</code>)</td>
+            <td>User Controls & Live Dashboard</td>
+            <td>Shows backend connection status, active meeting code pill, live scrolling transcript box, and the <strong>"Finalize & Fill Tasksheet"</strong> trigger button.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- REST API Quick Reference -->
+      <h2><span class="num">6</span> Core REST Endpoints & Database Schema</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 12%;">Method</th>
+            <th style="width: 32%;">Endpoint</th>
+            <th style="width: 24%;">Payload / Params</th>
+            <th style="width: 32%;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag" style="background: #dbeafe; color: #1e40af;">GET</span></td>
+            <td><code>/oauth2callback</code></td>
+            <td><code>code</code>, <code>scope</code></td>
+            <td>Persists refreshed Google tokens into <code>token.json</code>.</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background: #dcfce7; color: #166534;">POST</span></td>
+            <td><code>/api/meet/audio-chunk</code></td>
+            <td><code>audio</code> (WebM), <code>meetingCode</code></td>
+            <td>Transcribes audio with Gemini and auto-updates tasksheets.</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background: #dcfce7; color: #166534;">POST</span></td>
+            <td><code>/api/meet/finalize-discussion</code></td>
+            <td><code>meetingCode</code>, <code>participants</code></td>
+            <td>Extracts 2–5 discussion topics and creates tasksheet entries.</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background: #dbeafe; color: #1e40af;">GET</span></td>
+            <td><code>/tasksheets</code></td>
+            <td><code>employeeId</code>, <code>date</code></td>
+            <td>Visual dashboard to inspect, filter, and edit employee timesheets.</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background: #dcfce7; color: #166534;">POST</span></td>
+            <td><code>/api/sync/external</code></td>
+            <td>None</td>
+            <td>Triggers 2-way sync with WhiteCode's HR/Tasksheet REST API.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- SQLite Schema -->
+      <p style="margin: 3px 0 2px 0; font-size: 7.2pt; color: #475569;">
+        <strong>SQLite Schema (<code>meetings.db</code>):</strong> 
+        <code>meetings</code> (records, status, project), 
+        <code>meeting_transcripts</code> (verbatim chunks), 
+        <code>meeting_participants</code> & <code>meeting_participant_sessions</code> (intervals), 
+        <code>employees</code> & <code>employee_email_aliases</code> (directory), 
+        <code>projects</code> (catalog), 
+        <code>tasksheet_entries</code> (hours, topics, sync_status).
+      </p>
+
+      <!-- 4-Step Quick Setup -->
+      <h2><span class="num">7</span> Quick Start in 4 Steps</h2>
+      <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 5px; padding: 6px 10px; font-size: 7.4pt; margin-top: 3px;">
+        <strong>1. Dependencies & Keys:</strong> Place <code>credentials.json</code> in root, set <code>GEMINI_API_KEY</code> in <code>.env</code>, run <code>npm install</code>.<br>
+        <strong>2. Start Backend:</strong> Run <code>npm run start</code> (server starts on port 3000). Visit <code>http://localhost:3000/</code> to grant Google permissions.<br>
+        <strong>3. Load Extension:</strong> Open <code>chrome://extensions</code>, enable Developer Mode, click "Load unpacked", select <code>chrome-extension</code> folder.<br>
+        <strong>4. Live Test:</strong> Join any Google Meet call, click extension icon, click "Start Discussion Tracking", speak, click "Finalize & Fill Tasksheet", and view updated entries on <code>/tasksheets</code>!
+      </div>
+    </div>
+
+    <div class="footer">
+      WhiteCode Meet Automation • Architecture & Flow Specification • Page 2 of 2 • WhiteCode Labs Confidential
+    </div>
+  </div>
+
+</body>
+</html>
